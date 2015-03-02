@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+import random
+import re
+from contextlib import closing
+from urllib.request import urlopen
+with closing(urlopen("http://www.youporn.com/random/video/")) as socket:
+    result = re.findall('<p class="message">((?:.|\\n)*?)</p>', str(socket.read()))
+print(random.choice(result))
