@@ -1,1 +1,0 @@
-/home/ruairidh/dotfiles/.i3
