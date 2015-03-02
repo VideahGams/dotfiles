@@ -12,5 +12,5 @@ PATH=$PATH:~/scripts
 
 
 
-function _update_ps1() { export PS1="$(/home/ruairidh/GitHub/promptastic/promptastic.py $?)"; }
+function _update_ps1() { export PS1="$(~/dotfiles/promptastic/promptastic.py $?)"; }
 export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
