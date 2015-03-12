@@ -1,6 +1,6 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# sh ~/.fehbg &
+sh ~/.fehbg &
 
 xsetroot -cursor_name left_ptr
 

@@ -17,11 +17,12 @@ set $gs 16 # Gap Size
 gap_size $gs
 
 # Titlebars
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 6
 
 # Window Borders
 new_float pixel 2
 new_window pixel 2
+
 
 ###############
 # Keybindings #

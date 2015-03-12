@@ -36,18 +36,9 @@ use_spacer left
 override_utf8_locale no
 cpu_avg_samples 1
 
-
 TEXT
 [
 
-{"full_text": " Uptime - [${uptime}] ","color": "\#CC342B"},
-
-{"full_text": " RAM - [$mem] ", "color":"\#E1AA5D"},
-
-{"full_text": " CPU - [$cpu%] ", "color":"\#B8D68C"},
-
-{"full_text": " Volume -  ${exec amixer get Master | grep -o "\[.*%\]"} ", "color":"\#7DC1CF"},
-
-{"full_text": " [${time %a %d %b} ${time %H:%M:%S}] ","color": "\#9B64FB"}
+{"full_text": " ♪ ${exec amixer get Master | grep -o "\[.*%\]"} ", "color":"\#268BD2"},
 
 ],
