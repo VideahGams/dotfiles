@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+#
+# redditerm Version 0.1
+#
+# This code is licensed under the MIT Open Source License.
+#
+# Copyright (c) 2015 Ruairidh Carmichael - ruairidhcarmichael@live.co.uk
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+import urllib.request, json, sys
+
+colors = {
+	'red': '\x1b[0;31m',
+	'clear': '\x1b[0m'
+}
+
+
+try:
+	user = sys.argv[1]
+except:
+	print("Error: No username provided. Please enter a username as an argument.")
+	sys.exit()
+
+url = "http://www.reddit.com/user/" + user + "/about.json"
+
+req = urllib.request.Request(url, data = None, headers = {'User-Agent': 'redditerm'})
+
+try:
+	response = urllib.request.urlopen(req);
+except:
+	print("There was an error loading the account '" + user + "'. Are you sure it exists?")
+	sys.exit()
+
+rawdata = response.read()
+data = json.loads(rawdata.decode())
+
+output = """
+                                        
+                                        
+                                        
+                      ███▄▄▄ ▄█▀▀▀█     
+                     ▐█     ▀█▌   █▌    
+                    ▐█        ▀███▀     
+                    █▌                  	""" + colors['red'] + "Username: " + colors['clear'] + data['data']['name'] + """
+           ▄▄██▀▀▀▀▀▀▀▀▀▀██▄▄           
+   ▄█▀▀███▀▀                 ▀▀██▀▀▀█▄  	""" + colors['red'] + "Link Karma: " + colors['clear'] + str(data['data']['link_karma']) + """
+  ▐█  █▀      """ + colors['red'] + """▄▄▄       ▄▄▄""" + colors['clear'] + """     ▀█▄ ▐█  
+   ███       """ + colors['red'] + """█████     █████""" + colors['clear'] + """      ███▀  	""" + colors['red'] + "Comment Karma: " + colors['clear'] + str(data['data']['comment_karma']) + """
+    █▌       """ + colors['red'] + """▀███▀     ▀███▀""" + colors['clear'] + """       █    
+    ▐█                            ▐█    
+     ▀█       ▄▄         ▄▄      ▄█     
+       ▀█▄      ▀▀█████▀▀     ▄▄█▀      
+          ▀██▄▄▄        ▄▄▄▄█▀▀         
+               ▀▀▀▀▀▀▀▀▀▀               
+"""
+
+print(output)
+

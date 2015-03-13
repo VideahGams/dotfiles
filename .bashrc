@@ -11,6 +11,7 @@ alias scrot='scrot -q 100 -d 3'
 PATH=$PATH:~/scripts
 
 
-
 function _update_ps1() { export PS1="$(~/dotfiles/promptastic/promptastic.py $?)"; }
 export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+
+export EDITOR="subl"
