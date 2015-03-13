@@ -1,6 +1,6 @@
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# ====================================== #
+# ======| VideahGams's i3 config |====== #
+# ====================================== #
 
 ###########################
 # Configuration Variables #
@@ -158,4 +158,23 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command ~/.conky/conkyinit
+
+        font pango: Monaco 9
+
+        colors{
+
+                focused_workspace  #0087af #0087af #dcdcdc
+                active_workspace   #2d2d2d #2d2d2d #dcdcdc
+                inactive_workspace #2d2d2d #2d2d2d #dcdcdc
+                urgent_workspace   #cc342b #cc342b #dcdcdc
+
+        }
+
 }
+
+# Colors
+# class                 border  backgr. text    indicator
+client.focused          #0087af #0087af #2d2d2d #2e9ef4
+client.focused_inactive #2d2d2d #2d2d2d #dcdcdc #484e50
+client.unfocused        #2d2d2d #2d2d2d #dcdcdc #292d2e
+client.urgent           #cc342b #cc342b #dcdcdc #900000
