@@ -52,9 +52,7 @@ data = json.loads(rawdata.decode())
 
 # Construct the terminal output.
 output = """
-                                        
-                                        
-                                        
+                                                                                                           
                       ███▄▄▄ ▄█▀▀▀█     
                      ▐█     ▀█▌   █▌    
                     ▐█        ▀███▀     
@@ -69,6 +67,8 @@ output = """
        ▀█▄      ▀▀█████▀▀     ▄▄█▀      
           ▀██▄▄▄        ▄▄▄▄█▀▀         
                ▀▀▀▀▀▀▀▀▀▀               
+
+
 """
 
 output = output.format(
