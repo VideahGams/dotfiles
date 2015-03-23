@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# redditerm Version 0.1
+# redditerm Version 0.2
 #
 # This code is licensed under the MIT Open Source License.
 #
@@ -24,34 +24,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
 import urllib.request, json, sys
 
-colors = {
-	'red': '\x1b[0;31m',
-	'clear': '\x1b[0m'
-}
-
-
+# Has the user inputted a username, if not, quit.
 try:
-	user = sys.argv[1]
+  user = sys.argv[1]
 except:
-	print("Error: No username provided. Please enter a username as an argument.")
-	sys.exit()
+  print("Error: No username provided. Please enter a username as an argument.")
+  sys.exit()
 
-url = "http://www.reddit.com/user/" + user + "/about.json"
+# Grab the users 'about.json', make sure to set the user agent.
+url = "http://www.reddit.com/user/{username}/about.json".format(username = user)
 
 req = urllib.request.Request(url, data = None, headers = {'User-Agent': 'redditerm'})
 
+# If we can't get the users info, give up and output an error.
 try:
-	response = urllib.request.urlopen(req);
+  response = urllib.request.urlopen(req);
 except:
-	print("There was an error loading the account '" + user + "'. Are you sure it exists?")
-	sys.exit()
+  print("There was an error loading the account '{username}'. Are you sure it exists?".format(username = user))
+  sys.exit()
 
+# Read the JSON and decode it.
 rawdata = response.read()
 data = json.loads(rawdata.decode())
 
+
+# Construct the terminal output.
 output = """
                                         
                                         
@@ -59,12 +58,12 @@ output = """
                       ███▄▄▄ ▄█▀▀▀█     
                      ▐█     ▀█▌   █▌    
                     ▐█        ▀███▀     
-                    █▌                  	""" + colors['red'] + "Username: " + colors['clear'] + data['data']['name'] + """
+                    █▌                    {red}Username:{clear} {name}
            ▄▄██▀▀▀▀▀▀▀▀▀▀██▄▄           
-   ▄█▀▀███▀▀                 ▀▀██▀▀▀█▄  	""" + colors['red'] + "Link Karma: " + colors['clear'] + str(data['data']['link_karma']) + """
-  ▐█  █▀      """ + colors['red'] + """▄▄▄       ▄▄▄""" + colors['clear'] + """     ▀█▄ ▐█  
-   ███       """ + colors['red'] + """█████     █████""" + colors['clear'] + """      ███▀  	""" + colors['red'] + "Comment Karma: " + colors['clear'] + str(data['data']['comment_karma']) + """
-    █▌       """ + colors['red'] + """▀███▀     ▀███▀""" + colors['clear'] + """       █    
+   ▄█▀▀███▀▀                 ▀▀██▀▀▀█▄    {red}Link Karma:{clear} {link_karma}
+  ▐█  █▀      {red}▄▄▄       ▄▄▄{clear}     ▀█▄ ▐█  
+   ███       {red}█████     █████{clear}      ███▀    {red}Comment Karma:{clear} {comment_karma}
+    █▌       {red}▀███▀     ▀███▀{clear}       █    
     ▐█                            ▐█    
      ▀█       ▄▄         ▄▄      ▄█     
        ▀█▄      ▀▀█████▀▀     ▄▄█▀      
@@ -72,5 +71,16 @@ output = """
                ▀▀▀▀▀▀▀▀▀▀               
 """
 
-print(output)
+output = output.format(
 
+  red = "\x1b[1;31m", # ANSI Color Codes.
+  clear = "\x1b[0m",
+  name = data['data']['name'], # Max reddit username length is 20, so we should be fine.
+  link_karma = str(data['data']['link_karma']),
+  comment_karma = str(data['data']['comment_karma'])
+
+)
+
+
+# Finally, display said output.
+print(output)
