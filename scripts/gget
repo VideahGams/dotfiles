@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+"""
+
+gget
+
+Usage:
+	gget <user> <project>
+	gget <user> <project> <directory>
+	gget (-h | --help)
+	gget --version
+
+Options:
+	-h --help	Show this screen.
+	--version 	Show version.
+
+"""
+
+from docopt import docopt
+from pygit2 import clone_repository, GitError
+import os, sys
+
+
+if __name__ == '__main__':
+
+	args = docopt(__doc__, version='gget 1.0')
+
+	repo_url = 'git://github.com/{user}/{project}'
+
+	repo_url = repo_url.format(
+		user = args['<user>'],
+		project = args['<project>']
+	)
+
+	if args['<directory>'] == None:
+		dir = os.getcwd()
+	else:
+		dir = args['<directory>']
+
+	dir = dir + '/' + args['<project>']
+
+	try:
+		print("Attempting to clone '" + args['<user>'] + "/" + args['<project>'] + "' into '" + args['<project>'] + "'.")
+		clone_repository(repo_url, dir)
+	except ValueError:
+		print("The folder '" + args['<project>'] + "' already exists!")
+		sys.exit()
+	except GitError:
+		print("The repository '" + args['<user>'] + "/" + args['<project>'] + "' doesn't exist.")
+		sys.exit()
+
+	successtext = "Successfuly cloned GitHub repository '{user}/{project}'"
+
+	successtext = successtext.format(
+		user = args['<user>'],
+		project = args['<project>']
+	)
+
+	print(successtext)
+
+
+
+
+
+
+	

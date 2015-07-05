@@ -43,6 +43,8 @@ URxvt.boldfont: xft:monaco for powerlinecp:size=10
 
 URxvt.letterSpace:		0
 
+Xcursor.theme: win8
+
 URxvt.scrollBar:		false
 URxvt.transparent:		false
 URxvt.url-select.launcher:	chromium
