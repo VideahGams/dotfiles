@@ -4,6 +4,8 @@
 
 gget
 
+Easy GitHub cloning script.
+
 Usage:
 	gget <user> <project>
 	gget <user> <project> <directory>
@@ -23,9 +25,9 @@ import os, sys
 
 if __name__ == '__main__':
 
-	args = docopt(__doc__, version='gget 1.0')
+	args = docopt(__doc__, version='gget 1.1')
 
-	repo_url = 'git://github.com/{user}/{project}'
+	repo_url = 'http://github.com/{user}/{project}'
 
 	repo_url = repo_url.format(
 		user = args['<user>'],
