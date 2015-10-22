@@ -159,7 +159,7 @@ bar {
         position top
         status_command ~/.conky/conkyinit
 
-        font pango: Monaco 9
+        font pango: FontAwesome 9, Monaco 9
 
         colors{
 

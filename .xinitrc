@@ -6,6 +6,8 @@ sh ~/.fehbg &
 
 xsetroot -cursor_name left_ptr
 
+udevil &
+
 compton &
 
 redshift &
