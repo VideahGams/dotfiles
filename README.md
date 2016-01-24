@@ -1,1 +1,1 @@
-![](https://github.com/VideahGams/dotfiles/raw/master/screenshot.png)
+![](https://github.com/VideahGams/dotfiles/blob/master/screenshot.png)
