@@ -40,20 +40,20 @@ cpu_avg_samples 1
 TEXT
 [
 
-#${if_match "${exec ~/scripts/spotify-control getStatus}"!="Spotify is not running"} \
-#	{"full_text": " ${exec ~/scripts/spotify-control getArtist} - ${exec ~/scripts/spotify-control getTitle} ",
+#${if_match "${exec ~/PersonalScripts/spotify-control getStatus}"!="Spotify is not running"} \
+#	{"full_text": " ${exec ~/PersonalScripts/spotify-control getArtist} - ${exec ~/PersonalScripts/spotify-control getTitle} ",
 #		"color":
-#			${if_match "${exec ~/scripts/spotify-control getStatus}"=="Playing"}"\#00CC00"${else}
-#				${if_match "${exec ~/scripts/spotify-control getStatus}"=="Paused"}"\#FF8000"${else}
+#			${if_match "${exec ~/PersonalScripts/spotify-control getStatus}"=="Playing"}"\#00CC00"${else}
+#				${if_match "${exec ~/PersonalScripts/spotify-control getStatus}"=="Paused"}"\#FF8000"${else}
 #					"\#CC0000"
 #				${endif}
 #			${endif} 
 #	},
 #${endif}
 
-${if_match "${exec ~/scripts/spotify-control}"!="Spotify is not running"}
+${if_match "${exec ~/PersonalScripts/spotify-control}"!="Spotify is not running"}
 
-	{"full_text": "  - [${exec ~/scripts/spotify-control getArtist} - ${exec ~/scripts/spotify-control getTitle}] ", "color":"\#81B71A"},
+	{"full_text": "   - [${exec ~/PersonalScripts/spotify-control getArtist} - ${exec ~/PersonalScripts/spotify-control getTitle}] ", "color":"\#81B71A"},
 
 ${endif}
 

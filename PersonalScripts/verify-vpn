@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+curl -s 'https://nordvpn.com/api/vpn/check/full' | jq '.status'

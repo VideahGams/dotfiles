@@ -38,8 +38,8 @@ Xft.autohint:			false
 Xft.hinting:			true
 Xft.hintstyle:			hintfull
 
-URxvt.font: xft:monaco for powerline:size=10
-URxvt.boldfont: xft:monaco for powerlinecp:size=10
+URxvt.font: xft:monaco for powerline:size=10, xft:Symbola:size=10
+URxvt.boldfont: xft:monaco for powerlinecp:size=10, xft:Symbola:size=10
 
 URxvt.letterSpace:		0
 

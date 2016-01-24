@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd ${GITHUB}
+rm -rf ctrulib
+git clone https://github.com/smealum/ctrulib.git
+
+cd ctrulib
+cd libctru && make ; cd ${GITHUB}
+sudo cp -rf ctrulib/libctru/ ${DEVKITPRO}
