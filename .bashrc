@@ -7,18 +7,18 @@
 
 alias ls='ls --color=auto'
 alias scrot='scrot -q 100 -d 3'
-alias snap='maim -s -c 1,0,0,0.6'
 alias hibernate='systemctl suspend'
-# alias love='love-hg'
-# alias yaourt='yaourt --noconfirm'
 alias subl='subl3'
 alias luarocks='sudo luarocks-5.1'
-alias start-vpn='sudo systemctl start nordvpn.service'
-alias stop-vpn='sudo systemctl stop nordvpn.service'
 
-PATH=$PATH:~/PersonalScripts
+PATH=$PATH:~/bin
 
-function _update_ps1() { export PS1="$(~/dotfiles/promptastic/promptastic.py $?)"; }
+export MOONTHEME='arch'
+
+# function _update_ps1() { export PS1="$(~/dotfiles/promptastic/promptastic.py $?)"; }
+# function _update_ps1() { export PS1="$(/usr/local/share/lua/5.1/moontastic/init.lua $?)"; }
+function _update_ps1() { export PS1="$(~/GitHub/moontastic/moontastic.squish.lua $?)"; }
+
 export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
 export EDITOR="subl3"
@@ -28,9 +28,12 @@ export THEOS_DEVICE_IP=192.168.0.9 THEOS_DEVICE_PORT=22
 
 export PEBBLE_PHONE=192.168.0.9
 
-export GITHUB=/home/ruairidh/GitHub
+export NINTENDO_IP=192.168.0.17
+
+export GITHUB=~/GitHub
 
 export DEVKITPRO=/opt/devkitpro
+export CTRULIB=$DEVKITPRO/libctru
 export DEVKITARM=$DEVKITPRO/devkitARM
 export AEMSTRO=$DEVKITPRO/aemstro
 export PATH=$PATH:$DEVKITARM/bin
@@ -50,4 +53,8 @@ export PATH=$PATH:/opt/openresty/bin/:/opt/openresty/nginx/sbin/ #Automatically 
 export PATH=$(echo $PATH | sed -e 's;:\?/~/.scripts;;' -e 's;~/.scripts:\?;;')
 
 eval $(thefuck --alias)export PATH=$PATH:/opt/openresty/bin/:/opt/openresty/nginx/sbin/ #Automatically added by openresty package
+
+export PATH=$PATH:/opt/openresty/bin/:/opt/openresty/nginx/sbin/ #Automatically added by openresty package
+
+export PATH=$PATH:/opt/openresty/bin/:/opt/openresty/nginx/sbin/ #Automatically added by openresty package
 

@@ -2,7 +2,7 @@
  
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files=".bashrc .Xresources .xinitrc .i3 PersonalScripts .conky .compton.conf .fehbg"        # list of files/folders to symlink in homedir
+files=".bashrc .Xresources .xinitrc .i3 bin .conky .compton.conf .fehbg .config"        # list of files/folders to symlink in homedir
  
 ##########
  

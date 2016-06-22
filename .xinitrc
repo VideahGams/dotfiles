@@ -12,7 +12,15 @@ compton &
 
 redshift &
 
+dunst &
+
+nm-applet &
+
+pasystray &
+
 setxkbmap gb
+
+./.screenlayout/layout.sh
 
 ###### i3 ######
 

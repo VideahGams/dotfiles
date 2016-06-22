@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# This code is licensed under the MIT Open Source License.
+
+# Copyright (c) 2016 Ruairidh Carmichael - ruairidhcarmichael@live.co.uk
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# Helpful Bash Screenshot Tool
+# This depends on maim + slop, with xclip as an optional dependency.
+
+function usage {
+	echo "$(basename "$0") <filename> [-h] [-c] [-s] -- script to easily take screenshots"
+	echo "where:"
+	echo "    -h show this help text"
+	echo "    -c copy image to clipboard"
+	echo "    -s upload image to imgur (link will be copied to clipboard"
+}
+
+while getopts "hcs" opt; do
+	case ${opt} in
+		h )
+			usage
+			exit
+			;;
+		s )
+			echo "TODO: Imgur support"
+			exit 1
+			;;
+		c )
+			if type xclip &>/dev/null; then
+				echo "Copying to clipboard ..."
+				maim -s -c 1,0,0,0.6 "/tmp/screenshot.png"
+				if [ -f "/tmp/screenshot.png" ]; then
+					xclip -i -t image/png -selection c < "/tmp/screenshot.png"
+					rm "/tmp/screenshot.png"
+					echo "Copied to clipboard."
+					exit
+				fi
+			else
+				"Cannot copy to clipboard: xclip is missing."
+				exit 1
+			fi
+			;;
+		\? )
+			echo "Invalid option: $OPTARG" 1>&2
+			exit 1
+			;;
+		: )
+			echo "Invalid option: $OPTARG requires an argument" 1>&2
+			exit 1
+			;;
+	esac
+done
+if [ $OPTIND -eq 1 ]; then
+	if [ $1 ]; then
+		echo $1; 
+		maim -s -c 1,0,0,0.6 $1
+	else
+		echo "No filename specified, please specify a filename."
+	fi
+fi
+shift $((OPTIND -1))
